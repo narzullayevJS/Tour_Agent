@@ -16,16 +16,14 @@ const getAllBookingId = async (req,res)=>{
 
         res.json(booking)
     } catch (error) {
-        res.status(500).json({ message: "Server error", error })
+        res.status(500).json({ mes sage: "Server error", error })
     }
 }
 
 const CreateBooking = async (req, res) => {
     try {
-        // Parametrlarni to'g'ri nomda olish
         const { user_name, tour, date } = req.body;
-        
-        // Avval tourni tekshirish
+      
         const tourExists = await Tour.findById(tour);
         if (!tourExists) {
           return res.status(404).json({
@@ -47,7 +45,7 @@ const CreateBooking = async (req, res) => {
           }
         });
       } catch (err) {
-        console.error("Booking yaratishda xato:", err); // Batafsilroq log
+        console.error("Booking yaratishda xato:", err); 
         res.status(400).json({
           status: 'fail',
           message: err.message
